@@ -1,6 +1,3 @@
-
-
-
 action_lst = ['addblock', 'printchain', 'printblock']
 def parsecmd(cmd):
     lst = cmd.split(' ')

@@ -21,8 +21,6 @@ def command_line():
         elif 'printblock' == action[0]:
             printblock(new_bc, int(action[1]))
 
-
-
 def addblock(bc, transactions):
     new_block = bc.New_Block(transactions, bc.get_prevblockhash(), bc.height)
     database.db_write_file(new_block)
@@ -32,9 +30,6 @@ def printchain(bc):
 
 def printblock(bc, height):
     print(bc.chain[height - 1])
-
-
-
 
 if __name__ == "__main__":
     new_db = database.DB()
