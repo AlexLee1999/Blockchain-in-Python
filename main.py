@@ -1,7 +1,7 @@
 from internal.block_src import block_chain
 from internal.block_src import block
 from internal.block_src import block_pow
-from internal.database import database
+from internal.database_src import database
 from internal.cmd_src import cmd_parse
 
 import sys
