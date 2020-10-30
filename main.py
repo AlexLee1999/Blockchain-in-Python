@@ -1,9 +1,9 @@
-from internal.block_src import block_chain
-from internal.block_src import block
-from internal.block_src import block_pow
-from internal.database_src import database
-from internal.cmd_src import cmd_parse
-
+import internal.block_src.block_chain as block_chain
+import internal.block_src.block as block
+import internal.block_src.block_pow as block_pow
+import internal.database_src.database as database
+import internal.cmd_src.cmd_parse as cmd_parse
+import internal.block_src.block_action as block_action
 import sys
 
 def command_line():
@@ -15,25 +15,15 @@ def command_line():
         elif 'exit' == action[0]:
             break
         elif 'addblock' == action[0]:
-            addblock(new_bc, action[1])
+            block_action.addblock(new_bc, action[1])
         elif 'printchain' == action[0]:
-            printchain(new_bc)
+            block_action.printchain(new_bc)
         elif 'printblock' == action[0]:
-            printblock(new_bc, int(action[1]))
+            block_action.printblock(new_bc, int(action[1]))
 
-def addblock(bc, transactions):
-    new_block = bc.New_Block(transactions, bc.get_prevblockhash(), bc.height)
-    database.db_write_file(new_block)
-
-def printchain(bc):
-    print(bc)
-
-def printblock(bc, height):
-    print(bc.chain[height - 1])
 
 if __name__ == "__main__":
     new_db = database.DB()
     new_bc = new_db.get_block_chain()
-    
     command_line()
     

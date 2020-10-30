@@ -1,6 +1,5 @@
 import time
-from .block import block
-from ..database import *
+import internal.block_src.block as block
 
 
 class block_chain(object):
@@ -8,14 +7,14 @@ class block_chain(object):
         self._chain = []
         self._height = 0
         self.New_Genesis_Block()
-    
+
     def New_Block(self, transactions, prev_block_hash, prev_height):
-        new_block = block(prev_height + 1, prev_block_hash, time.time(), 20, 0, transactions, 0)
+        new_block = block.block(prev_height + 1, prev_block_hash, time.time(), 20, 0, transactions, 0)
         new_block.set_hash_and_nonce()
         self._chain.append(new_block)
         self._height += 1
         return new_block
-    
+
     def Add_exist_block(self, block):
         self._chain.append(block)
         self._height += 1
@@ -42,4 +41,3 @@ class block_chain(object):
     def chain(self):
         return self._chain
 
-    

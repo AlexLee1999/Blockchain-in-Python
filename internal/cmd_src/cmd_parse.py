@@ -13,24 +13,33 @@ def parsecmd(cmd):
                 return
             else:
                 if lst[1] == 'addblock':
-                    if lst[2] != '-transactions':
-                        print_usage()
-                        return
-                    else:
-                        return ['addblock', lst[3]]
+                    return add_block_parser(lst)
                 elif lst[1] == 'printchain':
                     return ['printchain']
                 elif lst[1] == 'printblock':
-                    if lst[2] != '-height':
-                        print_usage()
-                        return
-                    else:
-                        if lst[3].isalnum():
-                            return ['printblock', lst[3]]
-                        else:
-                            print_usage()
-                            return
+                    return print_block_parser(lst)
+                    
 
 
 def print_usage():
     print('usage: \n ./psudobitcoin exit \n ./psudobitcoin addblock -transactions <transactions> \n ./psudobitcoin printchain \n ./psudobitcoin printblock -height <height> \n')
+
+
+def add_block_parser(lst):
+    if not lst[2] or lst[2] != '-transactions':
+        print_usage()
+        return
+    else:
+        return ['addblock', lst[3]]
+
+
+def print_block_parser(lst):
+    if not lst[2] or lst[2] != '-height':
+        print_usage()
+        return
+    else:
+        if lst[3].isalnum():
+            return ['printblock', lst[3]]
+        else:
+            print_usage()
+            return

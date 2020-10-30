@@ -1,7 +1,6 @@
-from ..block_src.block import *
-from ..block_src.block_chain import *
-
 import os
+import internal.block_src.block as block
+import internal.block_src.block_chain as block_chain
 
 
 class DB(object):
@@ -22,17 +21,18 @@ class DB(object):
     @property
     def db(self):
         return self._db
-  
+
     def get_block_chain(self):
         if not self.count_num():
-            return block_chain()
+            return block_chain.block_chain()
         else:
-            new_bc = block_chain()
+            new_bc = block_chain.block_chain()
             for f in self._db:
                 if f.endswith('.txt'):
                     new_block = db_read_file(f'block_file/{f}')
                     new_bc.Add_exist_block(new_block)
         return new_bc
+
 
 def db_read_file(filename):
     f = open(filename)
@@ -51,10 +51,11 @@ def db_read_file(filename):
     transactions = f.readline()
     transactions = transactions[:-1]
     hash = f.readline()
-    return block(height, prevblockhash, time, bits, nonce, transactions, hash)
+    return block.block(height, prevblockhash, time, bits, nonce, transactions, hash)
+
 
 def db_write_file(block):
-    f = open(f'block_file/%04d.txt' %block.height, 'w')
+    f = open(f'block_file/%04d.txt' % block.height, 'w')
     f.write(f"{block.height}\n")
     f.write(f"{block.prevblockhash}\n")
     f.write(f"{block.time}\n")
@@ -62,4 +63,4 @@ def db_write_file(block):
     f.write(f"{block.nonce}\n")
     f.write(f"{block.transactions}\n")
     f.write(f"{block.hash}")
-    
+

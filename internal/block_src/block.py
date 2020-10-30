@@ -1,5 +1,6 @@
 import time
-from .block_pow import Pow
+import internal.block_src.block_pow as pow
+
 
 class block(object):
     def __init__(self, height, prevblockhash, time, bits, nonce, transactions, hash):
@@ -13,7 +14,7 @@ class block(object):
 
     def __repr__(self):
         return f"Height: {self.height}, prevblockhash: {self.prevblockhash}, time: {self.time}, bits: {self.bits}, nonce: {self.nonce}, transactions: {self.transactions}, hash: {self.hash}\n"
-    
+
     @property
     def height(self):
         return self._height
@@ -25,7 +26,7 @@ class block(object):
     @property
     def time(self):
         return self._time
-    
+
     @property
     def bits(self):
         return self._bits
@@ -33,22 +34,21 @@ class block(object):
     @property
     def nonce(self):
         return self._nonce
-    
+
     @property
     def transactions(self):
         return self._transactions
-    
+
     @property
     def hash(self):
         return self._hash
 
     def set_hash_and_nonce(self):
-        new_pow = Pow(self)
+        new_pow = pow.Pow(self)
         nonce, hash = new_pow.run()
         self._nonce = nonce
         self._hash = hash
         return
-        
 
 
 
