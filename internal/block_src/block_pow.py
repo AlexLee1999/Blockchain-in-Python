@@ -1,4 +1,4 @@
-import internal.block_src.shared_func as shared_func
+import internal.shared_function.shared_function as shared_function
 import sys
 import time
 
@@ -26,7 +26,7 @@ class Pow(object):
         nonce = 0
         while nonce < max_nonce:
             data = self.prepare_data(nonce)
-            hex_out = shared_func.hash_string(data)
+            hex_out = shared_function.hash_string(data)
             hex_int = int(hex_out, 16)
             if hex_int < self.target:
                 break
@@ -36,7 +36,7 @@ class Pow(object):
 
     def validate(self):
         data = self.prepare_data(self.block.nonce)
-        hex_out = shared_func.hash_string(data)
+        hex_out = shared_function.hash_string(data)
         hex_int = int(hex_out, 16)
         if hex_int < self.target:
             return True

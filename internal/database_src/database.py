@@ -1,7 +1,7 @@
 import os
 import internal.block_src.block as block
 import internal.block_src.block_chain as block_chain
-import internal.database_src.database_share_func as database_share_func
+import internal.database_src.database_action as database_action
 
 class DB(object):
     def __init__(self):
@@ -26,13 +26,13 @@ class DB(object):
         if not self.count_num():
             new_bc = block_chain.block_chain()
             new_block = new_bc.New_Genesis_Block()
-            database_share_func.db_write_file(new_block)
+            database_action.db_write_file(new_block)
             return new_bc
         else:
             new_bc = block_chain.block_chain()
             for f in self._db:
                 if f.endswith('.txt'):
-                    new_block = database_share_func.db_read_file(f'block_file/{f}')
+                    new_block = database_action.db_read_file(f'block_file/{f}')
                     new_bc.Add_exist_block(new_block)
         return new_bc
 
