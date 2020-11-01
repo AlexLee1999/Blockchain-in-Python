@@ -20,7 +20,7 @@ class Pow(object):
         return self._target
 
     def prepare_data(self, nonce):
-        return f"{self.block.prevblockhash}{self.block.transactions}{target_bits}{nonce}"
+        return f"{self.block.height}{self.block.prevblockhash}{self.block.time}{target_bits}{nonce}{self.block.transactions}"
 
     def run(self):
         nonce = 0
