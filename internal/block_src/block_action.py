@@ -1,9 +1,9 @@
-import internal.database_src.database_share_func as database_share_func
+import internal.database_src.database_action as database_action
 
 
 def addblock(bc, transactions):
     new_block = bc.New_Block(transactions, bc.get_prevblockhash(), bc.height)
-    database_share_func.db_write_file(new_block)
+    database_action.db_write_file(new_block)
 
 
 def printchain(bc):
