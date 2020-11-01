@@ -32,7 +32,6 @@ class Pow(object):
                 break
             else:
                 nonce += 1
-
         return nonce, hex_out
 
     def validate(self):
