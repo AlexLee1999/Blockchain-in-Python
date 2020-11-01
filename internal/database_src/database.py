@@ -24,7 +24,10 @@ class DB(object):
 
     def get_block_chain(self):
         if not self.count_num():
-            return block_chain.block_chain()
+            new_bc = block_chain.block_chain()
+            new_block = new_bc.New_Genesis_Block()
+            database_share_func.db_write_file(new_block)
+            return new_bc
         else:
             new_bc = block_chain.block_chain()
             for f in self._db:
