@@ -50,7 +50,3 @@ class block(object):
         self._hash = hash
         return
 
-
-
-
-

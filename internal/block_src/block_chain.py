@@ -1,6 +1,6 @@
 import time
 import internal.block_src.block as block
-
+import internal.transactions_src.transactions_actions as transactions_actions
 
 class block_chain(object):
     def __init__(self):
@@ -19,8 +19,9 @@ class block_chain(object):
         self._height += 1
         return
 
-    def New_Genesis_Block(self):
-        new_block = self.New_Block("New Genesis Block", "", 0)
+    def New_Genesis_Block(self, address):
+        new_transactions = transactions_actions.coinbase_transactions(address)
+        new_block = self.New_Block(new_transactions, "", 0)
         return new_block
 
     def get_prevblockhash(self):

@@ -23,17 +23,17 @@ class DB(object):
         return self._db
 
     def get_block_chain(self):
-        if not self.count_num():
-            new_bc = block_chain.block_chain()
-            new_block = new_bc.New_Genesis_Block()
-            database_action.db_write_file(new_block)
-            return new_bc
-        else:
-            new_bc = block_chain.block_chain()
-            for f in self._db:
-                if f.endswith('.txt'):
-                    new_block = database_action.db_read_file(f'block_file/{f}')
-                    new_bc.Add_exist_block(new_block)
+        new_bc = block_chain.block_chain()
+        for f in self._db:
+            if f.endswith('.txt'):
+                new_block = database_action.db_read_file(f'block_file/{f}')
+                new_bc.Add_exist_block(new_block)
+        return new_bc
+    
+    def get_new_block_chain(self, address):
+        new_bc = block_chain.block_chain()
+        new_block = new_bc.New_Genesis_Block(address)
+        database_action.db_write_file(new_block)
         return new_bc
 
 

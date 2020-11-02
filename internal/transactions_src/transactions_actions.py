@@ -15,3 +15,4 @@ def coinbase_transactions(to):
     tx.add_vout(txout)
     tx.set_id()
     return tx
+
