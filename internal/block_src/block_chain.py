@@ -41,3 +41,9 @@ class block_chain(object):
     def chain(self):
         return self._chain
 
+'''
+    def find_account_amount(self, address):
+        for block in self._chain:
+            if block.transactions.vout.Script_sig == address:
+                
+'''

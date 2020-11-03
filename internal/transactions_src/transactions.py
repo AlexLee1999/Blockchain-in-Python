@@ -8,11 +8,11 @@ class transactions(object):
         self._vout = []
 
     def __repr__(self):
-        string = f"ID : {self._id}\n"
+        string = f"ID : {self._id} "
         string += "TXin : "
         for vin in self._vin:
             string += f"({vin}) "
-        string += "\nTXout : "
+        string += "TXout : "
         for vout in self._vout:
             string += f"({vout}) "
         return string

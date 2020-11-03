@@ -3,3 +3,5 @@ block_file/.DS_Store
 *.pyc
 internal/.DS_Store
 .DS_Store
+*.txt
+*.txt

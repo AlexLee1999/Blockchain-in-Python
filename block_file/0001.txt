@@ -1,9 +1,0 @@
-1
-
-1604286134.217
-20
-5645
-ID : 01f4d272432ee093ee9a75c968e10e90777cf74936b612a53095ca399bf3a86b
-TXin : (ID : , Vout : -1, Script_sig : Reward to 123) 
-TXout : (Value : 50, Script Public Key : 123) 
-0010ec45d200049feec700a61925757fc4b8807d28e62479a70ae59372c24cbf
