@@ -4,4 +4,4 @@ This is a program of psuedo bitcoin
 
 HOW TO RUN:
 ------
-    >python3 main.py
+    >python3 -m main
