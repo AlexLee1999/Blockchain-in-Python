@@ -47,7 +47,7 @@ def db_wallet_read_file(filename):
 
 
 def db_wallet_write_file(wallet):
-    f = open(f'wallet_file/%d.txt' % wallet.address, 'w')
+    f = open(f'wallet_file/%s.txt' % wallet.address, 'w')
     f.write(f"{wallet.private_key}\n")
     f.write(f"{wallet.public_key}\n")
     f.write(f"{wallet.hash_public_key}\n")

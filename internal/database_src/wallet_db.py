@@ -30,4 +30,4 @@ class DB_wallet(object):
             if f.endswith('.txt'):
                 new_wallet = database_action.db_wallet_read_file(f'wallet_file/{f}')
                 new_wallet_set.add_wallet(new_wallet)
-        return new_wallet
+        return new_wallet_set
