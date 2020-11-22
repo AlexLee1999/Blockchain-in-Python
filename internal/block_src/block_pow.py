@@ -1,4 +1,4 @@
-import internal.shared_function.shared_function as shared_function
+import internal.shared_function_src.shared_function as shared_function
 import sys
 import time
 
