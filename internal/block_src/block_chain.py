@@ -63,7 +63,6 @@ class block_chain(object):
                                 pass
                     if out.is_locked_with_key(public_key_hash):
                         unspent_txs.append(tx)
-        print(unspent_txs)
         return unspent_txs
 
 

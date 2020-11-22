@@ -24,5 +24,6 @@ def new_transactions(f, to, amount, bc, wallet_set):
     outputs = []
     wallet_f = wallet_set.find_via_address(f)
     ava = bc.find_account_amount(wallet_f.hash_public_key)
+    
 
 

@@ -27,12 +27,12 @@ def printblock(bc, height):
         print(bc.chain[height - 1])
 
 
-def createblockchain(address, bc, db, wallet_set):
+def createblockchain(address, bc, db, wallet_set, utxo):
     if bc != None:
         print('Block chain already exist !')
         return
     else:
-        bc = db.get_new_block_chain(address, wallet_set)
+        bc = db.get_new_block_chain(address, wallet_set, utxo)
         return bc
 
 

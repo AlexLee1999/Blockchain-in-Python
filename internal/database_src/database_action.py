@@ -5,7 +5,9 @@ import internal.wallet_src.wallet_set as wallet_set
 import internal.transactions_src.transactions as transactions
 import internal.transactions_src.txinput as txinput
 import internal.transactions_src.txoutput as txoutput
+import internal.utxo_src.utxo as utxo
 import json
+import pickle
 
 def db_read_file(filename):
     f = open(filename)
@@ -71,3 +73,14 @@ def db_wallet_write_file(wallet):
     f.write(f"{wallet.public_key}\n")
     f.write(f"{wallet.hash_public_key}\n")
     f.write(f"{wallet.address}")
+
+def db_utxo_read_file():
+    with open('utxo_file/utxo.db', 'rb') as handle:
+        b = pickle.load(handle)
+    new_utxo = utxo.utxo(set=b)
+    return new_utxo
+
+def db_utxo_write_file(s):
+    with open('utxo_file/utxo.db', 'wb') as handle:
+        pickle.dump(s, handle, protocol=pickle.HIGHEST_PROTOCOL)
+
