@@ -1,9 +1,9 @@
 import internal.shared_function_src.shared_function as shared_function
-
+import json
 
 class transactions(object):
-    def __init__(self):
-        self._id = ""
+    def __init__(self, id = ''):
+        self._id = id
         self._vin = []
         self._vout = []
 
@@ -46,3 +46,14 @@ class transactions(object):
     def add_vout(self, txout):
         self._vout.append(txout)
 
+    def is_coinbase(self):
+        if self.vin[0].public_key == self.vin[0].sig:
+            return True
+        else:
+            return False
+
+    def set_json(self):
+        vin = [v.set_json() for v in self._vin]
+        vout = [v.set_json() for v in self._vout]
+        jsonStr = json.dumps({"id":self._id, "vin": vin, "vout": vout})
+        return jsonStr

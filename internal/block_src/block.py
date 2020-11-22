@@ -3,13 +3,13 @@ import internal.block_src.block_pow as pow
 
 
 class block(object):
-    def __init__(self, height, prevblockhash, time, bits, nonce, transactions, hash):
+    def __init__(self, height, prevblockhash, time, bits, nonce, hash):
         self._height = height
         self._prevblockhash = prevblockhash
         self._time = time
         self._bits = bits
         self._nonce = nonce
-        self._transactions = transactions
+        self._transactions = []
         self._hash = hash
 
     def __repr__(self):
@@ -50,3 +50,5 @@ class block(object):
         self._hash = hash
         return
 
+    def add_transactions(self, t):
+        self.transactions.append(t)

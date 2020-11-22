@@ -2,7 +2,10 @@ import internal.block_src.block as block
 import internal.block_src.block_chain as block_chain
 import internal.wallet_src.wallet as wallet
 import internal.wallet_src.wallet_set as wallet_set
-
+import internal.transactions_src.transactions as transactions
+import internal.transactions_src.txinput as txinput
+import internal.transactions_src.txoutput as txoutput
+import json
 
 def db_read_file(filename):
     f = open(filename)
@@ -18,10 +21,25 @@ def db_read_file(filename):
     nonce = f.readline()
     nonce = nonce[:-1]
     nonce = int(nonce)
-    transactions = f.readline()
-    transactions = transactions[:-1]
+    trans = f.readline()
+    trans = trans[:-1]
+    dic = json.loads(trans)
+    id = dic['id']
+    new_tra = transactions.transactions(id)
+    vin = dic['vin']
+    vout = dic['vout']
+    for v in vin:
+        j = json.loads(v)
+        new_in = txinput.txinput(j['_txid'], j['_vout'], j['_sig'], j['_public_key'])
+        new_tra.add_vin(new_in)
+    for v in vout:
+        j = json.loads(v)
+        new_out = txoutput.txoutput(j['_value'], j['_public_key_hash'])
+        new_tra.add_vout(new_out)
     hash = f.readline()
-    return block.block(height, prevblockhash, time, bits, nonce, transactions, hash)
+    b = block.block(height, prevblockhash, time, bits, nonce, hash)
+    b.add_transactions(new_tra)
+    return b
 
 
 def db_write_file(block):
@@ -31,7 +49,8 @@ def db_write_file(block):
     f.write(f"{block.time}\n")
     f.write(f"{block.bits}\n")
     f.write(f"{block.nonce}\n")
-    f.write(f"{block.transactions}\n")
+    for t in block.transactions:
+        f.write(f"{t.set_json()}\n")
     f.write(f"{block.hash}")
 
 def db_wallet_read_file(filename):
@@ -51,4 +70,4 @@ def db_wallet_write_file(wallet):
     f.write(f"{wallet.private_key}\n")
     f.write(f"{wallet.public_key}\n")
     f.write(f"{wallet.hash_public_key}\n")
-    f.write(f"{wallet.address}\n")
+    f.write(f"{wallet.address}")

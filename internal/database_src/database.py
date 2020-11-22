@@ -30,9 +30,9 @@ class DB(object):
                 new_bc.Add_exist_block(new_block)
         return new_bc
     
-    def get_new_block_chain(self, address):
+    def get_new_block_chain(self, address, wallet_set):
         new_bc = block_chain.block_chain()
-        new_block = new_bc.New_Genesis_Block(address)
+        new_block = new_bc.New_Genesis_Block(address, wallet_set)
         database_action.db_write_file(new_block)
         return new_bc
 

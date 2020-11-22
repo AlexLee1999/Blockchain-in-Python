@@ -1,4 +1,4 @@
-action_lst = ['addblock', 'printchain', 'printblock', 'createblockchain', 'createwallet']
+action_lst = ['addblock', 'printchain', 'printblock', 'createblockchain', 'createwallet', 'getbalance']
 def parsecmd(cmd):
     lst = cmd.split(' ')
     if lst[0] != './psudobitcoin':
@@ -22,6 +22,9 @@ def parsecmd(cmd):
                     return create_block_chain_parser(lst)
                 elif lst[1] == 'createwallet':
                     return ['createwallet']
+                elif lst[1] == 'getbalance':
+                    return get_balance_parser(lst)
+
                     
 
 
@@ -69,6 +72,20 @@ def create_block_chain_parser(lst):
     else:
         if lst[3] != '':
             return['createblockchain', lst[3]]
+        else:
+            print_usage()
+            return
+
+def get_balance_parser(lst):
+    if len(lst) != 4:
+        print_usage()
+        return
+    elif lst[2] != '-address':
+        print_usage()
+        return
+    else:
+        if lst[3] != '':
+            return['getbalance', lst[3]]
         else:
             print_usage()
             return

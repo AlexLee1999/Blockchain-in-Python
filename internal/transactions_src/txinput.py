@@ -1,3 +1,5 @@
+import internal.shared_function_src.shared_function as shared_function
+import json
 class txinput(object):
     def __init__(self, txid, vout, sig, public_key):
         self._txid = txid
@@ -26,3 +28,11 @@ class txinput(object):
 
     def prepare_data(self):
         return f"{self._txid}{self._vout}{self._sig}{self._public_key}"
+    
+    def hashkey(self, public_key_hash):
+        return shared_function.hash_public_key(self._public_key) == public_key_hash
+
+    def set_json(self):
+        jsonStr = json.dumps(self.__dict__)
+        return jsonStr
+        

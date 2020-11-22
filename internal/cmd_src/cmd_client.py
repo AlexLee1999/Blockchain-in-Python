@@ -37,14 +37,15 @@ class cmd_client(object):
             elif 'printblock' == action[0]:
                 block_action.printblock(self._bc, int(action[1]))
             elif 'createblockchain' == action[0]:
-                self._bc = block_action.createblockchain(action[1], self._bc, self._db)
+                self._bc = block_action.createblockchain(action[1], self._bc, self._db, self._wallet_set)
             elif 'createwallet' == action[0]:
                 if self._wallet_set == None:
                     self._wallet_set = wallet_set.wallet_set()
                 new_wallet = wallet.wallet(None, None, None, None)
-                print(new_wallet)
                 self._wallet_set.add_wallet(new_wallet)
                 database_action.db_wallet_write_file(new_wallet)
+            elif 'getbalance' == action[0]:
+                self._bc.find_account_amount(action[1], self._wallet_set)
 
                 
                     
