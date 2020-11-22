@@ -4,12 +4,11 @@ import ecdsa
 import hashlib
 import binascii
 
-class Wallet(object):
+class wallet(object):
 
     def __init__(self):
-        self._private_key = shared_function.gen_private_key()
-        self._public_key = shared_function.gen_public_key(self._private_key)
-        self._hash_public_key = shared_function.hash_public_key(binascii.hexlify(self._public_key.to_string()))
+        self._private_key, self._public_key = shared_function.gen_key()
+        self._hash_public_key = shared_function.hash_public_key(self._public_key)
         self._address = shared_function.get_address(self._hash_public_key)
 
     @property
@@ -32,5 +31,5 @@ class Wallet(object):
         return f"Private key : {self.private_key}, Public key : {self.public_key}, Hash public key : {self._hash_public_key}, Address{self.address}"
 
 
-wallet = Wallet()
+wallet = wallet()
 print(wallet)

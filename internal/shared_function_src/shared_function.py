@@ -7,12 +7,12 @@ def hash_string(hstring):
     return hashlib.sha256(hstring.encode('utf-8')).hexdigest()
 
 
-def gen_private_key():
-    return ecdsa.SigningKey.generate(curve=ecdsa.NIST256p, hashfunc = hashlib.sha256)
+def gen_key():
+    sk = ecdsa.SigningKey.generate(curve=ecdsa.NIST256p, hashfunc = hashlib.sha256)
+    vk = sk.get_verifying_key()
+    return sk.to_string().hex(), vk.to_string().hex()
 
 
-def gen_public_key(private_key):
-    return private_key.get_verifying_key()
 
 
 def hash_public_key(public_key):

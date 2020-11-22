@@ -1,5 +1,7 @@
 import internal.block_src.block as block
 import internal.block_src.block_chain as block_chain
+import internal.wallet_src.wallet as wallet
+import internal.wallet_src.wallet_set as wallet_set
 
 
 def db_read_file(filename):
@@ -31,3 +33,22 @@ def db_write_file(block):
     f.write(f"{block.nonce}\n")
     f.write(f"{block.transactions}\n")
     f.write(f"{block.hash}")
+
+def db_wallet_read_file(filename):
+    f = open(filename)
+    private = f.readline()
+    private = private[:-1]
+    public = f.readline()
+    public = public[:-1]
+    hash_public_key = f.readline()
+    hash_public_key = hash_public_key[:-1]
+    address = f.readline()
+    return wallet.wallet(private, public, hash_public_key, address)
+
+
+def db_wallet_write_file(wallet):
+    f = open(f'wallet_file/%d.txt' % wallet.address, 'w')
+    f.write(f"{wallet.private_key}\n")
+    f.write(f"{wallet.public_key}\n")
+    f.write(f"{wallet.hash_public_key}\n")
+    f.write(f"{wallet.address}\n")
