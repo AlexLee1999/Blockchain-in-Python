@@ -34,7 +34,17 @@ class utxo(object):
                 if out.is_locked_with_key(pubkey_hash) and accumulated < amount:
                     accumulated += out.value
                     unspent_outputs[tx_id].append(out_idx)
+        print(self)
         return accumulated, unspent_outputs
+
+    def find_funds(self, pubkey_hash):
+        accumulated = 0
+        for tx_id in self.set:
+            outs = self.set[tx_id]
+            for _, out in enumerate(outs):
+                if out.is_locked_with_key(pubkey_hash):
+                    accumulated += out.value
+        return accumulated
 
     def __repr__(self):
         return f"{self._set}"

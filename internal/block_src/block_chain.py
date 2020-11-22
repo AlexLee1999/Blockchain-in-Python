@@ -2,6 +2,8 @@ import time
 import collections
 import internal.block_src.block as block
 import internal.transactions_src.transactions_actions as transactions_actions
+import internal.database_src.database_action as database_action
+import internal.utxo_src.utxo as utxo
 
 class block_chain(object):
     def __init__(self):
@@ -65,7 +67,14 @@ class block_chain(object):
                         unspent_txs.append(tx)
         return unspent_txs
 
+    def mine(self, transactions):
+        prev = self._chain[-1].hash
+        prev_h = self._height
+        new_block = self.New_Block(transactions, prev, prev_h)
+        database_action.db_write_file(new_block)
+        return new_block
 
+        
 
 
             

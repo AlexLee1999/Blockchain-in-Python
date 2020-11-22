@@ -10,6 +10,8 @@ import internal.wallet_src.wallet_set as wallet_set
 import internal.database_src.db_wallet as db_wallet
 import internal.utxo_src.utxo as utxo
 import internal.database_src.db_utxo as db_utxo
+import internal.transactions_src.transactions_actions as transactions_actions
+import internal.transactions_src.transactions as transactions
 
 
 class cmd_client(object):
@@ -45,7 +47,6 @@ class cmd_client(object):
                 block_action.printblock(self._bc, int(action[1]))
             elif 'createblockchain' == action[0]:
                 self._bc = block_action.createblockchain(action[1], self._bc, self._db, self._wallet_set, self._utxo)
-                print(self._utxo)
             elif 'createwallet' == action[0]:
                 if self._wallet_set == None:
                     self._wallet_set = wallet_set.wallet_set()
@@ -53,12 +54,13 @@ class cmd_client(object):
                 self._wallet_set.add_wallet(new_wallet)
                 database_action.db_wallet_write_file(new_wallet)
             elif 'getbalance' == action[0]:
-                s = self._bc.find_account_amount(action[1], self._wallet_set)
-                sum = 0
-                for tx in s:
-                    for vout in tx.vout:
-                        sum += vout.value
-                print(sum)
-
+                w = self._wallet_set.find_via_address(action[1])
+                s = self._utxo.find_funds(w.hash_public_key)
+                print(s)
+            elif 'send' == action[0]:
+                new_t = transactions_actions.new_transactions(action[1], action[2], action[3], self._bc, self._wallet_set, self._utxo)
+                if new_t != None:
+                    new_block = self._bc.mine(new_t)
+                    self._utxo.update(new_block)
                 
                     
