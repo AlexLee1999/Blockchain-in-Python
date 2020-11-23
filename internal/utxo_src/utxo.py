@@ -1,6 +1,8 @@
 import internal.database_src.database_action as database_action
 import json
 import collections
+
+
 class utxo(object):
     def __init__(self, set = dict()):
         self._set = set
@@ -34,7 +36,6 @@ class utxo(object):
                 if out.is_locked_with_key(pubkey_hash) and accumulated < amount:
                     accumulated += out.value
                     unspent_outputs[tx_id].append(out_idx)
-        print(self)
         return accumulated, unspent_outputs
 
     def find_funds(self, pubkey_hash):

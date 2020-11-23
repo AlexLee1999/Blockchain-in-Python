@@ -23,7 +23,6 @@ def new_transactions(f, to, amount, bc, wallet_set, utxo):
     outputs = []
     wallet_f = wallet_set.find_via_address(f)
     wallet_t = wallet_set.find_via_address(to)
-
     acc, valid_outputs = utxo.find_spendable_outputs(wallet_f.hash_public_key, amount)
     if acc < amount:
         print('Not enough funds')
@@ -35,7 +34,6 @@ def new_transactions(f, to, amount, bc, wallet_set, utxo):
     outputs.append(txoutput.txoutput(amount, wallet_t.hash_public_key))
     if acc > amount:
         outputs.append(txoutput.txoutput(acc-amount, wallet_f.hash_public_key))
-
     new_t = transactions.transactions()
     for out in outputs:
         new_t.add_vout(out)

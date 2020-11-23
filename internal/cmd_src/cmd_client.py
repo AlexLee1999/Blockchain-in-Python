@@ -55,12 +55,11 @@ class cmd_client(object):
             elif 'getbalance' == action[0]:
                 w = self._wallet_set.find_via_address(action[1])
                 s = self._utxo.find_funds(w.hash_public_key)
-                print(f"Your Balance :{s}")
+                print(f"Your Balance : {s}")
             elif 'send' == action[0]:
                 new_t = transactions_actions.new_transactions(action[1], action[2], action[3], self._bc, self._wallet_set, self._utxo)
                 if new_t != None:
                     new_block = self._bc.mine(new_t, action[1], self._wallet_set)
-
                     self._utxo.update(new_block)
                 
                     
