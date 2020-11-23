@@ -1,4 +1,6 @@
 import json
+
+
 class txoutput(object):
     def __init__(self, value, public_key_hash):
         self._value = value
@@ -20,4 +22,4 @@ class txoutput(object):
 
     def is_locked_with_key(self, public_key_hash):
         return public_key_hash == self.public_key_hash
-    
+

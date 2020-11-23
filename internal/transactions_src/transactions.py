@@ -4,8 +4,9 @@ import internal.transactions_src.txoutput as txoutput
 import json
 import ecdsa
 
+
 class transactions(object):
-    def __init__(self, id = ''):
+    def __init__(self, id=''):
         self._id = id
         self._vin = []
         self._vout = []
@@ -55,7 +56,3 @@ class transactions(object):
         else:
             return False
 
-
-    
-        
-        

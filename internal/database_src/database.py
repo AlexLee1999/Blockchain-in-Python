@@ -3,6 +3,7 @@ import internal.block_src.block as block
 import internal.block_src.block_chain as block_chain
 import internal.database_src.database_action as database_action
 
+
 class DB(object):
     def __init__(self):
         self._db = os.listdir('block_file/')
@@ -36,6 +37,4 @@ class DB(object):
         utxo.update(new_block)
         database_action.db_write_file(new_block)
         return new_bc
-
-
 

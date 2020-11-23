@@ -2,6 +2,7 @@ import time
 import internal.block_src.block_pow as pow
 import internal.merkle_src.merkle as merkle
 
+
 class block(object):
     def __init__(self, height, prevblockhash, time, bits, nonce, hash):
         self._height = height
@@ -54,10 +55,11 @@ class block(object):
 
     def add_transactions(self, t):
         self.transactions.append(t)
-    
+
     def hash_transactions(self):
         tx_lst = []
         for tx in self._transactions:
             tx_lst.append(tx)
         m_tree = merkle.MerkleTree(tx_lst)
         return m_tree.root_hash
+

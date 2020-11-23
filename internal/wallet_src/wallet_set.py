@@ -9,8 +9,10 @@ class wallet_set(object):
         for wallet in self._wallets:
             if wallet.address == address:
                 return wallet
+
     def __repr__(self):
         s = ""
         for wallet in self._wallets:
             s += f'{wallet}\n'
         return s
+

@@ -1,6 +1,8 @@
 import os
 import internal.utxo_src.utxo as utxo
 import internal.database_src.database_action as database_action
+
+
 class DB_utxo(object):
     def __init__(self):
         self._db = os.listdir('utxo_file/')
@@ -24,3 +26,4 @@ class DB_utxo(object):
         new_utxo = utxo.utxo()
         new_utxo = database_action.db_utxo_read_file()
         return new_utxo
+

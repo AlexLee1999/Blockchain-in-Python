@@ -4,8 +4,9 @@ import collections
 
 
 class utxo(object):
-    def __init__(self, set = dict()):
+    def __init__(self, set=dict()):
         self._set = set
+
     @property
     def set(self):
         return self._set
@@ -26,7 +27,7 @@ class utxo(object):
             new_outputs = [out for out in tx.vout]
             self._set[tx.id] = new_outputs
             database_action.db_utxo_write_file(self._set)
-    
+
     def find_spendable_outputs(self, pubkey_hash, amount):
         accumulated = 0
         unspent_outputs = collections.defaultdict(list)
@@ -49,3 +50,4 @@ class utxo(object):
 
     def __repr__(self):
         return f"{self._set}"
+

@@ -42,5 +42,3 @@ def new_transactions(f, to, amount, bc, wallet_set, utxo):
     new_t.set_id()
     return new_t
 
-
-

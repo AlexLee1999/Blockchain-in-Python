@@ -28,14 +28,12 @@ class cmd_client(object):
             self._bc = self._db.get_block_chain()
         if self._wallet_db.count_num() != 0:
             self._wallet_set = self._wallet_db.get_wallet()
-        
-    
-    
+
     def command_line(self):
         while True:
             cmd = input('cmd>>>')
             action = cmd_parse.parsecmd(cmd)
-            if action == None:
+            if action is None:
                 continue
             elif 'exit' == action[0]:
                 break
@@ -46,7 +44,7 @@ class cmd_client(object):
             elif 'createblockchain' == action[0]:
                 self._bc = block_action.createblockchain(action[1], self._bc, self._db, self._wallet_set, self._utxo)
             elif 'createwallet' == action[0]:
-                if self._wallet_set == None:
+                if self._wallet_set is None:
                     self._wallet_set = wallet_set.wallet_set()
                 new_wallet = wallet.wallet(None, None, None, None)
                 self._wallet_set.add_wallet(new_wallet)
@@ -58,8 +56,7 @@ class cmd_client(object):
                 print(f"Your Balance : {s}")
             elif 'send' == action[0]:
                 new_t = transactions_actions.new_transactions(action[1], action[2], action[3], self._bc, self._wallet_set, self._utxo)
-                if new_t != None:
+                if new_t is not None:
                     new_block = self._bc.mine(new_t, action[1], self._wallet_set)
                     self._utxo.update(new_block)
-                
-                    
+

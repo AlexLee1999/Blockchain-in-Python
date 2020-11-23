@@ -5,6 +5,7 @@ import internal.transactions_src.transactions_actions as transactions_actions
 import internal.database_src.database_action as database_action
 import internal.utxo_src.utxo as utxo
 
+
 class block_chain(object):
     def __init__(self):
         self._chain = []
@@ -45,7 +46,6 @@ class block_chain(object):
     def chain(self):
         return self._chain
 
-
     def find_account_amount(self, address, wallet_set):
         wallet = wallet_set.find_via_address(address)
         public_key_hash = wallet.hash_public_key
@@ -76,10 +76,4 @@ class block_chain(object):
         new_block.set_hash_and_nonce()
         database_action.db_write_file(new_block)
         return new_block
-    
-    
 
-
-            
-
-                

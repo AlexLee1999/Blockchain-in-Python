@@ -1,4 +1,6 @@
 action_lst = ['printchain', 'printblock', 'createblockchain', 'createwallet', 'getbalance', 'send']
+
+
 def parsecmd(cmd):
     lst = cmd.split(' ')
     if lst[0] != './psudobitcoin':
@@ -22,17 +24,12 @@ def parsecmd(cmd):
                     return ['createwallet']
                 elif lst[1] == 'getbalance':
                     return get_balance_parser(lst)
-                elif lst[1] =='send':
+                elif lst[1] == 'send':
                     return send_parser(lst)
 
 
-                    
-
-
 def print_usage():
-    print('usage: \n ./psudobitcoin createwallet \n ./psudobitcoin exit \n ./psudobitcoin printchain \n ./psudobitcoin printblock -height <height> \n ./psudobitcoin createblockchain -address <address> \n ./psudobitcoin send -from <from> -to <to> -amount <amount> \n')
-
-
+    print('usage: \n ./psudobitcoin createwallet \n ./psudobitcoin exit \n ./psudobitcoin printchain \n ./psudobitcoin printblock -height <height> \n ./psudobitcoin createblockchain -address <address> \n ./psudobitcoin send -from <from> -to <to> -amount <amount> \n ./psudobitcoin getbalance -address <address> \n')
 
 
 def print_block_parser(lst):
@@ -64,6 +61,7 @@ def create_block_chain_parser(lst):
             print_usage()
             return
 
+
 def get_balance_parser(lst):
     if len(lst) != 4:
         print_usage()
@@ -77,6 +75,7 @@ def get_balance_parser(lst):
         else:
             print_usage()
             return
+
 
 def send_parser(lst):
     if len(lst) != 8:
@@ -97,3 +96,4 @@ def send_parser(lst):
         else:
             print_usage()
             return
+

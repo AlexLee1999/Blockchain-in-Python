@@ -9,6 +9,7 @@ import internal.utxo_src.utxo as utxo
 import json
 import pickle
 
+
 def db_read_file(filename):
     with open(f'{filename}', 'rb') as handle:
         b = pickle.load(handle)
@@ -16,8 +17,9 @@ def db_read_file(filename):
 
 
 def db_write_file(block):
-    with open('block_file/%04d.db'% block.height, 'wb') as handle:
+    with open('block_file/%04d.db' % block.height, 'wb') as handle:
         pickle.dump(block, handle, protocol=pickle.HIGHEST_PROTOCOL)
+
 
 def db_wallet_read_file(filename):
     with open(f'{filename}', 'rb') as handle:
@@ -26,14 +28,16 @@ def db_wallet_read_file(filename):
 
 
 def db_wallet_write_file(wallet):
-    with open('wallet_file/%s.db'% wallet.address, 'wb') as handle:
+    with open('wallet_file/%s.db' % wallet.address, 'wb') as handle:
         pickle.dump(wallet, handle, protocol=pickle.HIGHEST_PROTOCOL)
+
 
 def db_utxo_read_file():
     with open('utxo_file/utxo.db', 'rb') as handle:
         b = pickle.load(handle)
     new_utxo = utxo.utxo(set=b)
     return new_utxo
+
 
 def db_utxo_write_file(s):
     with open('utxo_file/utxo.db', 'wb') as handle:
