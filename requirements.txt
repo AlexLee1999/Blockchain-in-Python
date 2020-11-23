@@ -1,3 +1,2 @@
 base58
-binascii
 ecdsa

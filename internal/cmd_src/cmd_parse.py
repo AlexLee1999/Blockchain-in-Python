@@ -30,7 +30,7 @@ def parsecmd(cmd):
 
 
 def print_usage():
-    print('usage: \n ./psudobitcoin exit \n ./psudobitcoin printchain \n ./psudobitcoin printblock -height <height> \n ./psudobitcoin createblockchain -address <address> \n ./psudobitcoin send -from <from> -to <to> -amount <amount> \n')
+    print('usage: \n ./psudobitcoin createwallet \n ./psudobitcoin exit \n ./psudobitcoin printchain \n ./psudobitcoin printblock -height <height> \n ./psudobitcoin createblockchain -address <address> \n ./psudobitcoin send -from <from> -to <to> -amount <amount> \n')
 
 
 

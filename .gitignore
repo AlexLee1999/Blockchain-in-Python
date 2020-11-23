@@ -4,3 +4,4 @@ block_file/.DS_Store
 internal/.DS_Store
 .DS_Store
 *.db
+.vscode/settings.json
