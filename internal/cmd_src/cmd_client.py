@@ -34,7 +34,7 @@ class cmd_client(object):
     def command_line(self):
         while True:
             cmd = input('cmd>>>')
-            action = cmd_parse.parsecmd('./psudobitcoin '+cmd)
+            action = cmd_parse.parsecmd(cmd)
             if action == None:
                 continue
             elif 'exit' == action[0]:
