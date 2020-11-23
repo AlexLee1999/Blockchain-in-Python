@@ -13,8 +13,6 @@ def gen_key():
     return sk.to_string().hex(), vk.to_string().hex()
 
 
-
-
 def hash_public_key(public_key):
     ripemd160 = hashlib.new('ripemd160')
     ripemd160.update(hashlib.sha256(binascii.unhexlify(public_key)).digest())
@@ -23,3 +21,7 @@ def hash_public_key(public_key):
 
 def get_address(public_key_hash):
     return base58.b58encode(public_key_hash)
+
+def pubkey_to_verifykey(pub_key, curve=ecdsa.SECP256k1):
+    vk_string = binascii.unhexlify(pub_key)
+    return ecdsa.VerifyingKey.from_string(vk_string, curve=curve)

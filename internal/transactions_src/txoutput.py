@@ -21,6 +21,3 @@ class txoutput(object):
     def is_locked_with_key(self, public_key_hash):
         return public_key_hash == self.public_key_hash
     
-    def set_json(self):
-        jsonStr = json.dumps(self.__dict__)
-        return jsonStr

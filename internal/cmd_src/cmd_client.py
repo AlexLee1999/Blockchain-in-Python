@@ -60,6 +60,7 @@ class cmd_client(object):
                 new_t = transactions_actions.new_transactions(action[1], action[2], action[3], self._bc, self._wallet_set, self._utxo)
                 if new_t != None:
                     new_block = self._bc.mine(new_t, action[1], self._wallet_set)
+
                     self._utxo.update(new_block)
                 
                     

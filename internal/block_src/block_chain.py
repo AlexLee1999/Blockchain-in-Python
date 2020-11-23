@@ -76,8 +76,8 @@ class block_chain(object):
         new_block.set_hash_and_nonce()
         database_action.db_write_file(new_block)
         return new_block
-
-        
+    
+    
 
 
             

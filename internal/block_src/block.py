@@ -1,6 +1,6 @@
 import time
 import internal.block_src.block_pow as pow
-
+import internal.merkle_src.merkle as merkle
 
 class block(object):
     def __init__(self, height, prevblockhash, time, bits, nonce, hash):
@@ -11,9 +11,10 @@ class block(object):
         self._nonce = nonce
         self._transactions = []
         self._hash = hash
+        self._merkle_root = None
 
     def __repr__(self):
-        return f"Height: {self.height}, prevblockhash: {self.prevblockhash}, time: {self.time}, bits: {self.bits}, nonce: {self.nonce}, transactions: {self.transactions}, hash: {self.hash}\n"
+        return f"Height: {self.height}, prevblockhash: {self.prevblockhash}, time: {self.time}, bits: {self.bits}, nonce: {self.nonce}, transactions: {self.transactions}, hash: {self.hash}, merkle root: {self._merkle_root}\n"
 
     @property
     def height(self):
@@ -48,7 +49,15 @@ class block(object):
         nonce, hash = new_pow.run()
         self._nonce = nonce
         self._hash = hash
+        self._merkle_root = self.hash_transactions()
         return
 
     def add_transactions(self, t):
         self.transactions.append(t)
+    
+    def hash_transactions(self):
+        tx_lst = []
+        for tx in self._transactions:
+            tx_lst.append(tx)
+        m_tree = merkle.MerkleTree(tx_lst)
+        return m_tree.root_hash

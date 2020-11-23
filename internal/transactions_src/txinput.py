@@ -32,7 +32,5 @@ class txinput(object):
     def hashkey(self, public_key_hash):
         return shared_function.hash_public_key(self._public_key) == public_key_hash
 
-    def set_json(self):
-        jsonStr = json.dumps(self.__dict__)
-        return jsonStr
+
         

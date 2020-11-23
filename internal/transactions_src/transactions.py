@@ -1,5 +1,8 @@
 import internal.shared_function_src.shared_function as shared_function
+import internal.transactions_src.txinput as txinput
+import internal.transactions_src.txoutput as txoutput
 import json
+import ecdsa
 
 class transactions(object):
     def __init__(self, id = ''):
@@ -52,8 +55,7 @@ class transactions(object):
         else:
             return False
 
-    def set_json(self):
-        vin = [v.set_json() for v in self._vin]
-        vout = [v.set_json() for v in self._vout]
-        jsonStr = json.dumps({"id":self._id, "vin": vin, "vout": vout})
-        return jsonStr
+
+    
+        
+        

@@ -26,7 +26,7 @@ def db_wallet_read_file(filename):
 
 
 def db_wallet_write_file(wallet):
-    with open('wallet_file/%s.txt'% wallet.address, 'wb') as handle:
+    with open('wallet_file/%s.db'% wallet.address, 'wb') as handle:
         pickle.dump(wallet, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
 def db_utxo_read_file():
