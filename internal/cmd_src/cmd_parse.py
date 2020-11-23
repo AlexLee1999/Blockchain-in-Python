@@ -1,4 +1,4 @@
-action_lst = ['addblock', 'printchain', 'printblock', 'createblockchain', 'createwallet', 'getbalance', 'send']
+action_lst = ['printchain', 'printblock', 'createblockchain', 'createwallet', 'getbalance', 'send']
 def parsecmd(cmd):
     lst = cmd.split(' ')
     if lst[0] != './psudobitcoin':
@@ -12,9 +12,7 @@ def parsecmd(cmd):
                 print_usage()
                 return
             else:
-                if lst[1] == 'addblock':
-                    return add_block_parser(lst)
-                elif lst[1] == 'printchain':
+                if lst[1] == 'printchain':
                     return ['printchain']
                 elif lst[1] == 'printblock':
                     return print_block_parser(lst)
@@ -32,22 +30,9 @@ def parsecmd(cmd):
 
 
 def print_usage():
-    print('usage: \n ./psudobitcoin exit \n ./psudobitcoin addblock -transactions <transactions> \n ./psudobitcoin printchain \n ./psudobitcoin printblock -height <height> \n')
+    print('usage: \n ./psudobitcoin exit \n ./psudobitcoin printchain \n ./psudobitcoin printblock -height <height> \n ./psudobitcoin createblockchain -address <address> \n ./psudobitcoin send -from <from> -to <to> -amount <amount> \n')
 
 
-def add_block_parser(lst):
-    if len(lst) != 4:
-        print_usage()
-        return
-    elif not lst[2] or lst[2] != '-transactions':
-        print_usage()
-        return
-    else:
-        if lst[3] != '':
-            return ['addblock', lst[3]]
-        else:
-            print_usage()
-            return
 
 
 def print_block_parser(lst):

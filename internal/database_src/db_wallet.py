@@ -16,7 +16,7 @@ class DB_wallet(object):
     def count_num(self):
         count = 0
         for file in self._db:
-            if file.endswith('.txt'):
+            if file.endswith('.db'):
                 count += 1
         return count
 
@@ -27,7 +27,7 @@ class DB_wallet(object):
     def get_wallet(self):
         new_wallet_set = wallet_set.wallet_set()
         for f in self._db:
-            if f.endswith('.txt'):
+            if f.endswith('.db'):
                 new_wallet = database_action.db_wallet_read_file(f'wallet_file/{f}')
                 new_wallet_set.add_wallet(new_wallet)
         return new_wallet_set

@@ -39,8 +39,6 @@ class cmd_client(object):
                 continue
             elif 'exit' == action[0]:
                 break
-            elif 'addblock' == action[0]:
-                block_action.addblock(self._bc, action[1])
             elif 'printchain' == action[0]:
                 block_action.printchain(self._bc)
             elif 'printblock' == action[0]:
@@ -52,15 +50,16 @@ class cmd_client(object):
                     self._wallet_set = wallet_set.wallet_set()
                 new_wallet = wallet.wallet(None, None, None, None)
                 self._wallet_set.add_wallet(new_wallet)
+                print(new_wallet)
                 database_action.db_wallet_write_file(new_wallet)
             elif 'getbalance' == action[0]:
                 w = self._wallet_set.find_via_address(action[1])
                 s = self._utxo.find_funds(w.hash_public_key)
-                print(s)
+                print(f"Your Balance :{s}")
             elif 'send' == action[0]:
                 new_t = transactions_actions.new_transactions(action[1], action[2], action[3], self._bc, self._wallet_set, self._utxo)
                 if new_t != None:
-                    new_block = self._bc.mine(new_t)
+                    new_block = self._bc.mine(new_t, action[1], self._wallet_set)
                     self._utxo.update(new_block)
                 
                     

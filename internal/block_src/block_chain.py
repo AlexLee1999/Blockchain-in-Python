@@ -24,7 +24,7 @@ class block_chain(object):
         return
 
     def New_Genesis_Block(self, address, wallet_set):
-        new_transactions = transactions_actions.coinbase_transactions(address, wallet_set)
+        new_transactions = transactions_actions.coinbase_transactions(address, wallet_set, 0)
         new_block = self.New_Block(new_transactions, "", 0)
         return new_block
 
@@ -67,10 +67,13 @@ class block_chain(object):
                         unspent_txs.append(tx)
         return unspent_txs
 
-    def mine(self, transactions):
+    def mine(self, transactions, to, wallet_set):
         prev = self._chain[-1].hash
         prev_h = self._height
         new_block = self.New_Block(transactions, prev, prev_h)
+        new_t = transactions_actions.coinbase_transactions(to, wallet_set, prev_h)
+        new_block.add_transactions(new_t)
+        new_block.set_hash_and_nonce()
         database_action.db_write_file(new_block)
         return new_block
 

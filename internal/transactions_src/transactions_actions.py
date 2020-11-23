@@ -6,12 +6,11 @@ import internal.transactions_src.txoutput as txoutput
 subsidy = 50
 
 
-def coinbase_transactions(to, wallet_set):
+def coinbase_transactions(to, wallet_set, prev_height):
     new_wallet = wallet_set.find_via_address(to)
-    print(wallet_set)
     data = f"Reward to {to}"
     txin = txinput.txinput("", -1, data, data)
-    txout = txoutput.txoutput(subsidy, new_wallet.hash_public_key)
+    txout = txoutput.txoutput(subsidy * 0.9 ** prev_height, new_wallet.hash_public_key)
     tx = transactions.transactions()
     tx.add_vin(txin)
     tx.add_vout(txout)

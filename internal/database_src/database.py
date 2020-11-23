@@ -14,7 +14,7 @@ class DB(object):
     def count_num(self):
         count = 0
         for file in self._db:
-            if file.endswith('.txt'):
+            if file.endswith('.db'):
                 count += 1
         return count
 
@@ -25,7 +25,7 @@ class DB(object):
     def get_block_chain(self):
         new_bc = block_chain.block_chain()
         for f in self._db:
-            if f.endswith('.txt'):
+            if f.endswith('.db'):
                 new_block = database_action.db_read_file(f'block_file/{f}')
                 new_bc.Add_exist_block(new_block)
         return new_bc

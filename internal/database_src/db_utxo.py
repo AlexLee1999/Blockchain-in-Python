@@ -1,5 +1,4 @@
 import os
-import ast
 import internal.utxo_src.utxo as utxo
 import internal.database_src.database_action as database_action
 class DB_utxo(object):

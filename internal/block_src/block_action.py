@@ -2,13 +2,6 @@ import internal.database_src.database_action as database_action
 import internal.database_src.database as database
 
 
-def addblock(bc, transactions):
-    if bc == None:
-        print("block chain doesn't exist")
-        return
-    new_block = bc.New_Block(transactions, bc.get_prevblockhash(), bc.height)
-    database_action.db_write_file(new_block)
-
 
 def printchain(bc):
     if bc == None:
