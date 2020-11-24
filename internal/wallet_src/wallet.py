@@ -34,5 +34,5 @@ class wallet(object):
         return self._address
 
     def __repr__(self):
-        return f"Private key : {self.private_key}, Public key : {self.public_key}, Hash public key : {self._hash_public_key}, Address : {self.address}"
+        return f"Private key : {self.private_key} \nPublic key : {self.public_key} \nHash public key : {self._hash_public_key} \nAddress : {self.address}"
 
