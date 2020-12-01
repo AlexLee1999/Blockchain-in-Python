@@ -8,7 +8,7 @@ HOW TO RUN:
     >python3 -m main
 
     
-usage:
+Usage:
 ------
     > ./psudobitcoin createwallet
     > ./psudobitcoin createblockchain -address <address>
@@ -17,7 +17,7 @@ usage:
     > ./psudobitcoin send -from <from> -to <to> -amount <amount>
     > ./psudobitcoin getbalance -address <address>
 
-functions :
+Functions :
 ------
     > block, blockchain, pow
     > database, client
@@ -25,7 +25,7 @@ functions :
     > mining reward
     > merkle tree
 
-requirements :
+Requirements :
 ------
     > base58
     > ecdsa
