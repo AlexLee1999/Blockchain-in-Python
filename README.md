@@ -1,16 +1,27 @@
-# blockchain_in_py
+# Blockchain in Python
 
+## Table of Content
+
+- [Introduction](#introduction)
+- [How to Run](#how-to-run)
+- [Usage](#usage)
+- [Functions](#functions)
+- [Requirements](#requirements)
+
+
+
+## Introduction
 This is a program of psuedo bitcoin
 
-HOW TO RUN:
-------
+##  How to Run
+
 ```bash
     pip install -r requirements.txt
     python3 -m main
 ```
     
-Usage:
-------
+## Usage:
+
 ```bash
      ./psudobitcoin createwallet
      ./psudobitcoin createblockchain -address <address>
@@ -20,15 +31,14 @@ Usage:
      ./psudobitcoin getbalance -address <address>
 ```
 
-Functions :
-------
+## Functions
+
     - block, blockchain, pow
     - database, client
     - Utxo
     - mining reward
     - merkle tree
 
-Requirements :
-------
+## Requirements
     > base58
     > ecdsa
