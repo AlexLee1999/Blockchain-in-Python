@@ -23,22 +23,23 @@ This is a program of psuedo bitcoin
 ## Usage:
 
 ```bash
-     ./psudobitcoin createwallet
-     ./psudobitcoin createblockchain -address <address>
-     ./psudobitcoin printchain
-     ./psudobitcoin printblock -height <height>
-     ./psudobitcoin send -from <from> -to <to> -amount <amount>
-     ./psudobitcoin getbalance -address <address>
+ ./psudobitcoin createwallet
+ ./psudobitcoin createblockchain -address <address>
+ ./psudobitcoin printchain
+ ./psudobitcoin printblock -height <height>
+ ./psudobitcoin send -from <from> -to <to> -amount <amount>
+ ./psudobitcoin getbalance -address <address>
 ```
 
 ## Functions
 
-    - block, blockchain, pow
-    - database, client
-    - Utxo
-    - mining reward
-    - merkle tree
-
+- Block, Blockchain, Pow
+- Database, Client
+- Utxo
+- Mining Reward
+- Merkle Tree
+- Sign and Verify(TBD)
 ## Requirements
-    > base58
-    > ecdsa
+- Python >= 3.6
+- base58
+- ecdsa
