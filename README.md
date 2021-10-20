@@ -11,7 +11,8 @@
 
 
 ## Introduction
-This is a program of psuedo bitcoin
+This is a program of psuedo bitcoin.  
+The program demostrates how the bitcoin works.
 
 ##  How to Run
 
@@ -39,6 +40,7 @@ This is a program of psuedo bitcoin
 - Mining Reward
 - Merkle Tree
 - Sign and Verify(TBD)
+
 ## Requirements
 - Python >= 3.6
 - base58
